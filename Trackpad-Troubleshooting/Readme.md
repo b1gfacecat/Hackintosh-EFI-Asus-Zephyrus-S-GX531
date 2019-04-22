@@ -27,7 +27,7 @@
   > 2.1.4 ~ 2.1.6 (Didn't try old versions)
   > VoodooI2C + VoodooI2CHID
   
-  - BIOS Update DSDT Comparision
+- BIOS Update DSDT Comparision
   
   [[HERE]](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/commit/91c184e55bdffa1bdb65ce5db007c1a34f555b2d)
   **Can Only be seen on a Github Client**
