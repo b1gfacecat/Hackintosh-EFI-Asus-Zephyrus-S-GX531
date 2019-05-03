@@ -129,7 +129,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change USTP, 0 to XSTP, 0 to avoid conflict</string>
+					<string>change USTP, 8 to XSTP, 8 to avoid conflict</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
