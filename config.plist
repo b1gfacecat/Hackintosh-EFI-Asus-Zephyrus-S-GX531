@@ -129,7 +129,7 @@
 				</dict>
 				<dict>
 					<key>Comment</key>
-					<string>change USTP, 8 to XSTP, 8 to avoid conflict</string>
+					<string>change USTP, 8 to XSTP, 8 to, pair with SSDT-I2C1</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
@@ -139,20 +139,6 @@
 					<key>Replace</key>
 					<data>
 					WFNUUAg=
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change USTP to FMBL to enable SSCN</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					VVNUUA==
-					</data>
-					<key>Replace</key>
-					<data>
-					Rk1CTA==
 					</data>
 				</dict>
 			</array>
