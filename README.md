@@ -27,19 +27,20 @@ Supports from 10.13.6(17G2112) ~ 10.14.4
 
 ## Perfectly Working Devices
 
-- UHD630 with brightness control
-- USB 3.1
-- Web Camera
-- Battery percentage showing
-- Sleeping
-- Sensors
-- HIDPI
-- CPU clock speed changing
-- Trackpad
+- [x] UHD630 with brightness control
+- [x] USB 3.1
+- [x] Web Camera
+- [x] Battery percentage showing
+- [x] Sleeping
+- [x] Sensors
+- [x] HIDPI
+- [x] CPU clock speed changing
+- [x] Trackpad
 
 ## Worked Devices with Small Issues
 
-- Sound Card ALC294 (Internal Microphone has noise)
+- Sound Card ALC294 (Internal Microphone has weird noise)
+- Fn keys (This is a USB HID Keyboard, VoodooPS2 & ACPIDebug doesn't function to get key maps, Asus Fn key Kexts don't support yet) currently using Karabiner-Elements
 
 ## Devices that doesn't work
 
