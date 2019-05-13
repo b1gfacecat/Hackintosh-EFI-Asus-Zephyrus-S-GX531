@@ -31,101 +31,13 @@
 			<array>
 				<dict>
 					<key>Comment</key>
-					<string>change HDAS to HDEF</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					SERBUw==
-					</data>
-					<key>Replace</key>
-					<data>
-					SERFRg==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change HECI to IMEI</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					SEVDSQ==
-					</data>
-					<key>Replace</key>
-					<data>
-					SU1FSQ==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change MEI to IMEI</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					TUVJXw==
-					</data>
-					<key>Replace</key>
-					<data>
-					SU1FSQ==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change EHC1 to EH01</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					RUhDMQ==
-					</data>
-					<key>Replace</key>
-					<data>
-					RUgwMQ==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change EHC2 to EH02</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					RUhDMg==
-					</data>
-					<key>Replace</key>
-					<data>
-					RUgwMg==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change XHC1 to XHC</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>
-					WEhDSQ==
-					</data>
-					<key>Replace</key>
-					<data>
-					WEhDXw==
-					</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
 					<string>change _OSI to XOSI, pair with SSDT-XOSI.aml</string>
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					X09TSQ==
-					</data>
+					<data>X09TSQ==</data>
 					<key>Replace</key>
-					<data>
-					WE9TSQ==
-					</data>
+					<data>WE9TSQ==</data>
 				</dict>
 				<dict>
 					<key>Comment</key>
@@ -133,22 +45,14 @@
 					<key>Disabled</key>
 					<false/>
 					<key>Find</key>
-					<data>
-					VVNUUAg=
-					</data>
+					<data>VVNUUAg=</data>
 					<key>Replace</key>
-					<data>
-					WFNUUAg=
-					</data>
+					<data>WFNUUAg=</data>
 				</dict>
 			</array>
 		</dict>
 		<key>DropTables</key>
 		<array>
-			<dict>
-				<key>Signature</key>
-				<string>#MCFG</string>
-			</dict>
 			<dict>
 				<key>Signature</key>
 				<string>DMAR</string>
@@ -180,7 +84,7 @@
 		<key>#DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Arguments</key>
-		<string>dart=0 nv_disable=1 -igfxnohdmi debug=0x100 -disablegfxfirmware </string>
+		<string>dart=0 nv_disable=1 -igfxnohdmi</string>
 		<key>DefaultVolume</key>
 		<string>Macintosh HD</string>
 		<key>NeverHibernate</key>
@@ -191,184 +95,53 @@
 		<integer>-1</integer>
 	</dict>
 	<key>Comment</key>
-	<string>This file is for 10.14.x with native CoffeeLake support</string>
+	<string>This file is for ASUS ROG Zephyrus S GX531</string>
 	<key>Devices</key>
 	<dict>
 		<key>AddProperties</key>
 		<array/>
 		<key>Audio</key>
 		<dict>
-			<key>Inject</key>
-			<integer>21</integer>
 			<key>ResetHDA</key>
 			<false/>
 		</dict>
-		<key>FakeID</key>
-		<dict>
-			<key>#IntelGFX</key>
-			<string>0x59168086</string>
-			<key>#Kaby Lake-Comment</key>
-			<string>To avoid automatic Clover fake device-id (Skylake) injection</string>
-		</dict>
 		<key>Properties</key>
 		<dict>
-			<key>PciRoot(0)/Pci(0x02,0)</key>
-			<dict>
-				<key># DVMT-prealloc</key>
-				<string>32MB BIOS, 19MB framebuffer, 9MB cursor bytes (credit RehabMan)</string>
-				<key># Note1</key>
-				<string> no HDMI example in CoffeeLake, flags 86090000 seen in CannonLake?</string>
-				<key>#2 0204-&gt;0306</key>
-				<string>0x3e9b0000, 0306 instead of 0204, HDMI</string>
-				<key>#2 framebuffer-con2-alldata</key>
-				<data>
-				AwYIAAAEAADHAwAA
-				</data>
-				<key>#2 framebuffer-con2-enable</key>
-				<integer>1</integer>
-				<key>#3 framebuffer-con1-alldata</key>
-				<data>
-				/wAAAAEAAAAgAAAA/wAAAAABAAAAIAAA
-				</data>
-				<key>#3 framebuffer-con1-enable</key>
-				<integer>1</integer>
-				<key>#3 no external</key>
-				<string>0x3e9b0000, eliminate all external ports (0105 and 0204)</string>
-				<key>#framebuffer-con0-enable</key>
-				<integer>1</integer>
-				<key>#framebuffer-con0-type</key>
-				<data>
-				AAQAAA==
-				</data>
-				<key>#framebuffer-con1-enable</key>
-				<integer>1</integer>
-				<key>#framebuffer-con1-flags</key>
-				<data>
-				hwEAAA==
-				</data>
-				<key>#framebuffer-con1-pipe</key>
-				<data>
-				EgAAAA==
-				</data>
-				<key>#framebuffer-con1-type</key>
-				<data>
-				AAgAAA==
-				</data>
-				<key>#framebuffer-con2-enable</key>
-				<integer>1</integer>
-				<key>#framebuffer-con2-flags</key>
-				<data>
-				hwEAAA==
-				</data>
-				<key>#framebuffer-con2-pipe</key>
-				<data>
-				EgAAAA==
-				</data>
-				<key>#framebuffer-con2-type</key>
-				<data>
-				AAgAAA==
-				</data>
-				<key>#framebuffer-con3-enable</key>
-				<integer>1</integer>
-				<key>#framebuffer-con3-flags</key>
-				<data>
-				hwEAAA==
-				</data>
-				<key>#framebuffer-con3-pipe</key>
-				<data>
-				EgAAAA==
-				</data>
-				<key>#framebuffer-con3-type</key>
-				<data>
-				AAgAAA==
-				</data>
-				<key>#hda-gfx</key>
-				<string>onboard-1</string>
-				<key>AAPL,ig-platform-id</key>
-				<data>
-				AACbPg==
-				</data>
-				<key>enable-cflbklt</key>
-				<data>
-				AQAAAA==
-				</data>
-				<key>framebuffer-fbmem</key>
-				<data>
-				AACQAA==
-				</data>
-				<key>framebuffer-patch-enable</key>
-				<integer>1</integer>
-				<key>framebuffer-stolenmem</key>
-				<data>
-				AAAwAQ==
-				</data>
-			</dict>
-			<key>PciRoot(0)/Pci(0x1f,3)</key>
-			<dict>
-				<key>#layout-id</key>
-				<integer>21</integer>
-			</dict>
 			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
 			<dict>
 				<key>layout-id</key>
-				<data>
-				FQAAAA==
-				</data>
+				<data>FQAAAA==</data>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
 				<key>AAPL,ig-platform-id</key>
-				<data>
-				AACbPg==
-				</data>
+				<data>AACbPg==</data>
+				<key>enable-cflbklt</key>
+				<data>AQAAAA==</data>
 				<key>device-id</key>
-				<data>
-				mz4AAA==
-				</data>
+				<data>mz4AAA==</data>
 				<key>disable-external-gpu</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>enable-hdmi20</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-con1-enable</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-con1-type</key>
-				<data>
-				AAgAAA==
-				</data>
+				<data>AAgAAA==</data>
 				<key>framebuffer-con2-enable</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-con2-index</key>
-				<data>
-				/////w==
-				</data>
+				<data>/////w==</data>
 				<key>framebuffer-fbmem</key>
-				<data>
-				AACQAA==
-				</data>
+				<data>AACQAA==</data>
 				<key>framebuffer-patch-enable</key>
-				<data>
-				AQAAAA==
-				</data>
+				<data>AQAAAA==</data>
 				<key>framebuffer-portcount</key>
-				<data>
-				AgAAAA==
-				</data>
+				<data>AgAAAA==</data>
 				<key>framebuffer-stolenmem</key>
-				<data>
-				AAAwAQ==
-				</data>
+				<data>AAAwAQ==</data>
 				<key>framebuffer-unifiedmem</key>
-				<data>
-				AAAAgA==
-				</data>
+				<data>AAAAgA==</data>
 			</dict>
 		</dict>
 		<key>USB</key>
@@ -389,8 +162,6 @@
 	</array>
 	<key>GUI</key>
 	<dict>
-		<key>#ScreenResolution</key>
-		<string>1920x1080</string>
 		<key>Custom</key>
 		<dict>
 			<key>Entries</key>
@@ -449,13 +220,6 @@
 	</dict>
 	<key>Graphics</key>
 	<dict>
-		<key>#EDID</key>
-		<dict>
-			<key>Inject</key>
-			<false/>
-		</dict>
-		<key>#ig-platform-id</key>
-		<string>0x3e9b0000</string>
 		<key>Inject</key>
 		<dict>
 			<key>ATI</key>
@@ -488,13 +252,9 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				ILniAAAADzA=
-				</data>
+				<data>ILniAAAADzA=</data>
 				<key>Replace</key>
-				<data>
-				ILniAAAAkJA=
-				</data>
+				<data>ILniAAAAkJA=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -502,31 +262,35 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				igKEwHRE
-				</data>
+				<data>igKEwHRE</data>
 				<key>MatchOS</key>
 				<string>10.13.x</string>
 				<key>Replace</key>
-				<data>
-				igKEwOtE
-				</data>
+				<data>igKEwOtE</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
 				<string>Disable panic kext logging on 10.14 release kernel (credit vit9696)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
-				<data>
-				igKEwHRC
-				</data>
+				<data>igKEwHRC</data>
 				<key>MatchOS</key>
 				<string>10.14.x</string>
 				<key>Replace</key>
-				<data>
-				igKEwOtC
-				</data>
+				<data>igKEwOtC</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Disable panic kext logging on 10.14.4 release kernel (credit vit9696)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>AIoChMB0</data>
+				<key>MatchOS</key>
+				<string>10.14.4</string>
+				<key>Replace</key>
+				<data>AIoChMDr</data>
 			</dict>
 		</array>
 		<key>KextsToPatch</key>
@@ -537,17 +301,13 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				SU9LaXQ=
-				</data>
+				<data>SU9LaXQ=</data>
 				<key>InfoPlistPatch</key>
 				<true/>
 				<key>Name</key>
 				<string>IOBufferCopyController</string>
 				<key>Replace</key>
-				<data>
-				SU9LaXM=
-				</data>
+				<data>SU9LaXM=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -555,17 +315,13 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				SU9LaXQ=
-				</data>
+				<data>SU9LaXQ=</data>
 				<key>InfoPlistPatch</key>
 				<true/>
 				<key>Name</key>
 				<string>AppleIntelLpssI2C</string>
 				<key>Replace</key>
-				<data>
-				SU9LaXM=
-				</data>
+				<data>SU9LaXM=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -573,17 +329,13 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				SU9LaXQ=
-				</data>
+				<data>SU9LaXQ=</data>
 				<key>InfoPlistPatch</key>
 				<true/>
 				<key>Name</key>
 				<string>AppleIntelLpssI2CController</string>
 				<key>Replace</key>
-				<data>
-				SU9LaXM=
-				</data>
+				<data>SU9LaXM=</data>
 			</dict>
 			<dict>
 				<key>Comment</key>
@@ -591,17 +343,13 @@
 				<key>Disabled</key>
 				<false/>
 				<key>Find</key>
-				<data>
-				AEFQUExFIFNTRAA=
-				</data>
+				<data>AEFQUExFIFNTRAA=</data>
 				<key>InfoPlistPatch</key>
 				<false/>
 				<key>Name</key>
 				<string>com.apple.iokit.IOAHCIBlockStorage</string>
 				<key>Replace</key>
-				<data>
-				AAAAAAAAAAAAAAA=
-				</data>
+				<data>AAAAAAAAAAAAAAA=</data>
 			</dict>
 		</array>
 	</dict>
