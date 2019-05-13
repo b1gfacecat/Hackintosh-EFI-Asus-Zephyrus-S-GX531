@@ -12,6 +12,8 @@ This EFI is suitable for [ASUS ROG Zephyrus S GX531GS](https://www.asus.com/us/R
 
 Supports from 10.13.6(17G2112) ~ 10.14.4
 
+**Attention!!! OpenCore is not supported yet!!!**
+
 ## Computer Configuration
 
 | Specifications | Detail                                                             |
