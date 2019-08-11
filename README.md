@@ -10,42 +10,73 @@ ENGLISH | [简体中文](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyr
 
 This EFI is suitable for [ASUS ROG Zephyrus S GX531GS](https://www.asus.com/us/ROG-Republic-Of-Gamers/ROG-Zephyrus-S-GX531) and may also work on the whole GX531 family (GX531GX/GX531GV/GX531GW/GX531GM)
 
-Supports from 10.13.6(17G2112) ~ 10.14.5(18F132)
+Supports from 10.13.6(17G2112) ~ 10.14.6(18G84) or higher
 
 ## Computer Configuration
 
-| Specifications | Detail                                                             |
-| -------------- | ------------------------------------------------------------------ |
-| Computer model | ASUS ROG Zephyrus S GX531GS                                        |
-| Motherboard    | HM370                                                              |
-| Processor      | Intel(R) Core(TM) i7 8750H @ 2.20GHz                               |
-| Memory         | 16 GB  2666MHz Dual Channel                                        |
-| HardDisk       | KINGSTON RBUSNS8154P3512GJ 512GB                                   |
-| Graphics Card  | Intel UHD Graphics 630 / NVIDIA Geforce GTX 1070 with Max-Q Design |
-| Sound Card     | ALC294 (LayoutID 21)                                               |
-| Trackpad       | ELAN 1404                                                          |
+| Specifications | Detail                                                                  |
+| -------------- | ----------------------------------------------------------------------- |
+| Computer model | ASUS ROG Zephyrus S GX531GS                                             |
+| Motherboard    | HM370                                                                   |
+| Processor      | Intel(R) Core(TM) i7 8750H @ 2.20GHz                                    |
+| Memory         | 16 GB  2666MHz Dual Channel                                             |
+| HardDisk       | KINGSTON RBUSNS8154P3512GJ 512GB                                        |
+| Graphics Card  | Intel UHD Graphics 630 <br /> NVIDIA Geforce GTX 1070 with Max-Q Design |
+| Sound Card     | ALC294 (LayoutID 21)                                                    |
+| Trackpad       | ELAN 1404                                                               |
+| Keyboard       | ROG N-Key Device (USB HID Keyboard)                                     |
 
 ## Perfectly Working Devices
 
-- [x] UHD630 with brightness control
-- [x] USB 3.1
+- [x] Intel UHD630 with brightness control
+- [x] USB 3.1 Gen 2
 - [x] Web Camera
-- [x] Battery percentage showing
-- [x] Sleeping
+- [x] Battery percentage
+- [x] Hibernation
 - [x] Sensors
 - [x] HIDPI
-- [x] CPU clock speed changing
+- [x] CPU turbo boost
 - [x] Trackpad
+- [x] Fn Keys
+- [x] 4 level keyboard backight control
+- [x] ROG AURA effects control
 
-## Worked Devices with Small Issues
+## Working Devices with Small Issues
 
 - Sound Card ALC294 (Internal Microphone has weird noise)
-- Fn keys (This is a USB HID Keyboard, VoodooPS2 & ACPIDebug doesn't function to get key maps, Asus Fn key Kexts don't support yet) currently using Karabiner-Elements
 
 ## Devices that doesn't work
 
 - NVIDIA GTX1070 with MAX-Q Design
-- Keyboard backlight control
+- Intel Wireless-AC 9560 CNVi wifi card (soldered)
+- Numberpad on trackpad
+
+## Special Thanks
+
+- [Daliansky](https://github.com/daliansky) for his macOS installation Dmg, configs and his awesome blog
+- [Startpenghubingzhou](https://github.com/penghubingzhou) for teaching me a lot about I2C trackpads
+- [Ben Raz](https://github.com/ben9923)'s patience on helping me with debugging the trackpad and CNL-H GPIO
+- [Steve Zheng](https://github.com/stevezhengshiqi) for helping me with OpenCore, Sound Card and ACPI
+- 宪武 for helping me in ACPI patches
+- [hieplpvip](https://github.com/hieplpvip) for developing USB HID keyboard Fn key support and AURA support
+- [Headkaze](https://github.com/headkaze) for the awesome Hackintool
+
+## Credits
+
+- [RehabMan](https://github.com/RehabMan)
+  - [OS-X-Null-Ethernet](https://github.com/RehabMan/OS-X-Null-Ethernet)
+- [Acidanthera](https://github.com/acidanthera)
+  - [OpenCore](https://github.com/acidanthera/OpenCorePkg)
+  - [Lilu](https://github.com/acidanthera/Lilu)
+  - [WhateverGreen](https://github.com/acidanthera/WhateverGreen)
+  - [VirtualSMC](https://github.com/acidanthera/VirtualSMC)
+  - [AppleALC](https://github.com/acidanthera/AppleALC)
+- [VoodooI2C Developer Team](https://voodooi2c.github.io/#Credits%20and%20Acknowledgments/Credits%20and%20Acknowledgments)
+  - [VoodooI2C](https://github.com/alexandred/VoodooI2C)
+  - [VoodooI2CHID](https://github.com/alexandred/VoodooI2C)
+- [hieplpvip](https://github.com/hieplpvip)
+  - [AsusSMC](https://github.com/hieplpvip/AsusSMC)
+  - [macrogaura](https://github.com/hieplpvip/macrogaura)
 
 ## Gallery
 
@@ -73,13 +104,6 @@ Supports from 10.13.6(17G2112) ~ 10.14.5(18F132)
 
 ![USB3.1](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/11.png)
 
-Still completing...
+---
 
-## Credits
-
-- [RehabMan](https://github.com/RehabMan)'s [USBInjectAll](https://github.com/RehabMan/OS-X-USB-Inject-All), [VoodooPS2Controller](https://github.com/RehabMan/OS-X-Voodoo-PS2-Controller)
-- [vit9696](https://github.com/vit9696)'s [Lilu](https://github.com/acidanthera/Lilu), [WhateverGreen](https://github.com/acidanthera/WhateverGreen), [VirtualSMC](https://github.com/acidanthera/VirtualSMC), [AppleALC](https://github.com/acidanthera/AppleALC)
-- [Alexandred](https://github.com/alexandred) and his team's [VoodooI2C](https://github.com/alexandred/VoodooI2C)
-- [daliansky](https://github.com/daliansky) and his [BLOG](https://translate.google.com/translate?sl=zh-CN&tl=en&u=https%3A%2F%2Fblog.daliansky.net%2F)
-- [Startpenghubingzhou](https://github.com/penghubingzhou) & [Ben Raz](https://github.com/ben9923)'s patience on helping me with the trackpad
-- [hieplpvip](https://github.com/hieplpvip)'s [AsusSMC](https://github.com/hieplpvip/AsusSMC)
+**Still completing...**
