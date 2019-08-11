@@ -2,7 +2,7 @@
 
 [![Release](https://img.shields.io/github/release/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/releases)
 [![Progress](https://img.shields.io/badge/Progress-Developing-ff69b4.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/README.md)
-[![License](https://img.shields.io/badge/License-GNU-lightgrey.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-GPLv3-lightgrey.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/LICENSE)
 
 A nearly perfect EFI for **Asus Zephyrus S GX531**
 
@@ -26,7 +26,7 @@ Supports from 10.13.6(17G2112) ~ 10.14.6(18G84) or higher
 | Trackpad       | ELAN 1404                                                               |
 | Keyboard       | ROG N-Key Device (USB HID Keyboard)                                     |
 
-## Perfectly Working Devices
+## Perfectly Working Features
 
 - [x] Intel UHD630 with brightness control
 - [x] USB 3.1 Gen 2
@@ -40,6 +40,7 @@ Supports from 10.13.6(17G2112) ~ 10.14.6(18G84) or higher
 - [x] Fn Keys
 - [x] 4 level keyboard backight control
 - [x] ROG AURA effects control
+- [x] Siri
 
 ## Working Devices with Small Issues
 
@@ -53,30 +54,30 @@ Supports from 10.13.6(17G2112) ~ 10.14.6(18G84) or higher
 
 ## Special Thanks
 
-- [Daliansky](https://github.com/daliansky) for his macOS installation Dmg, configs and his awesome blog
-- [Startpenghubingzhou](https://github.com/penghubingzhou) for teaching me a lot about I2C trackpads
 - [Ben Raz](https://github.com/ben9923)'s patience on helping me with debugging the trackpad and CNL-H GPIO
+- [Daliansky](https://github.com/daliansky) for his macOS installation Dmg, configs and his awesome blog
+- [Headkaze](https://github.com/headkaze) for the awesome Hackintool
+- [hieplpvip](https://github.com/hieplpvip) for developing USB HID keyboard Fn key support and AURA support
+- [Startpenghubingzhou](https://github.com/penghubingzhou) for teaching me a lot about I2C trackpads
 - [Steve Zheng](https://github.com/stevezhengshiqi) for helping me with OpenCore, Sound Card and ACPI
 - 宪武 for helping me in ACPI patches
-- [hieplpvip](https://github.com/hieplpvip) for developing USB HID keyboard Fn key support and AURA support
-- [Headkaze](https://github.com/headkaze) for the awesome Hackintool
 
 ## Credits
 
-- [RehabMan](https://github.com/RehabMan)
-  - [OS-X-Null-Ethernet](https://github.com/RehabMan/OS-X-Null-Ethernet)
 - [Acidanthera](https://github.com/acidanthera)
-  - [OpenCore](https://github.com/acidanthera/OpenCorePkg)
-  - [Lilu](https://github.com/acidanthera/Lilu)
-  - [WhateverGreen](https://github.com/acidanthera/WhateverGreen)
-  - [VirtualSMC](https://github.com/acidanthera/VirtualSMC)
   - [AppleALC](https://github.com/acidanthera/AppleALC)
-- [VoodooI2C Developer Team](https://voodooi2c.github.io/#Credits%20and%20Acknowledgments/Credits%20and%20Acknowledgments)
-  - [VoodooI2C](https://github.com/alexandred/VoodooI2C)
-  - [VoodooI2CHID](https://github.com/alexandred/VoodooI2C)
+  - [Lilu](https://github.com/acidanthera/Lilu)
+  - [OpenCore](https://github.com/acidanthera/OpenCorePkg)
+  - [VirtualSMC](https://github.com/acidanthera/VirtualSMC)
+  - [WhateverGreen](https://github.com/acidanthera/WhateverGreen)
 - [hieplpvip](https://github.com/hieplpvip)
   - [AsusSMC](https://github.com/hieplpvip/AsusSMC)
   - [macrogaura](https://github.com/hieplpvip/macrogaura)
+- [RehabMan](https://github.com/RehabMan)
+  - [OS-X-Null-Ethernet](https://github.com/RehabMan/OS-X-Null-Ethernet)
+- [VoodooI2C Developer Team](https://voodooi2c.github.io/#Credits%20and%20Acknowledgments/Credits%20and%20Acknowledgments)
+  - [VoodooI2C](https://github.com/alexandred/VoodooI2C)
+  - [VoodooI2CHID](https://github.com/alexandred/VoodooI2C)
 
 ## Gallery
 
