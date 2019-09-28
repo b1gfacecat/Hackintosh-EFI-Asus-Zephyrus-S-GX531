@@ -1,4 +1,4 @@
----------README----------
+# AppleHDA for ALC294
 
 Thanks to Mirone.
 

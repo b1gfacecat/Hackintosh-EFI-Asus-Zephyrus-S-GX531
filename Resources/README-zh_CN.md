@@ -1,23 +1,23 @@
 # 华硕玩家国度冰刃 3 黑苹果 EFI 分享
 
-[![Release](https://img.shields.io/github/release/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/releases)
-[![Progress](https://img.shields.io/badge/Progress-完善中-ff69b4.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/README.md)
-[![License](https://img.shields.io/badge/License-GPLv3-lightgrey.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531.svg)](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/releases)
+[![Progress](https://img.shields.io/badge/Progress-完善中-ff69b4.svg)](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/README.md)
+[![License](https://img.shields.io/badge/License-GPLv3-lightgrey.svg)](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/LICENSE)
 
-[ENGLISH](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/tree/master/README.md) | 简体中文
+[ENGLISH](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/tree/master/README.md) | 简体中文
 
 本EFI适用于[华硕玩家国度冰刃 3](https://www.asus.com.cn/ROG-Republic-Of-Gamers/ROG-Zephyrus-S-GX531/) - GX531GS 的黑苹果,也可能适用于整个冰刃 3 系列 (GX531GX/GX531GW/GX531GV/GX531GM)
 
-支持 10.13.6(17G2112) ~ 10.14.6(18G84) 或更高
+支持 10.13.6(17G2112) ~ 10.15 Beta (19A573a) 或更高
 
 ## 笔记本配置
 
-| 规格   | 详细配置                                                                 |
-| ----- | ----------------------------------------------------------------------- |
+| 规格   | 详细配置                                                                |
+| ------ | ----------------------------------------------------------------------- |
 | 型号   | ASUS ROG Zephyrus S GX531GS                                             |
 | 主板   | HM370                                                                   |
 | 处理器 | Intel(R) Core(TM) i7 8750H @ 2.20GHz                                    |
-| 内存   | 16 GB  2666MHz 双通道                                                    |
+| 内存   | 16 GB  2666MHz 双通道                                                   |
 | 硬盘   | KINGSTON RBUSNS8154P3512GJ 512GB                                        |
 | 显卡   | Intel UHD Graphics 630 <br /> NVIDIA Geforce GTX 1070 with Max-Q Design |
 | 声卡   | ALC294                                                                  |
@@ -79,29 +79,29 @@
 
 ## 图库
 
-![GX531](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/GX531.png)
+![GX531](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/GX531.png)
 
-![Info](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/1.png)
+![Info](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/1.png)
 
-![FnSound](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/2.png)
+![FnSound](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/2.png)
+![FnBrightness](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/3.png)
+![Herbination](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/Herbination.png)
 
-![FnBrightness](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/3.png)
+![ALC294](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/4.png)
 
-![ALC294](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/4.png)
+![Display](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/5.png)
 
-![Display](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/5.png)
+![Sound](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/6.png)
 
-![Sound](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/6.png)
+![Nvme](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/7.png)
 
-![Nvme](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/7.png)
+![Battery](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/8.png)
 
-![Battery](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/8.png)
+![Memory](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/9.png)
 
-![Memory](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/9.png)
+![Graphics](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/10.png)
 
-![Graphics](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/10.png)
-
-![USB3.1](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/11.png)
+![USB3.1](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/11.png)
 
 ---
 

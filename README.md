@@ -1,16 +1,16 @@
 # Hackintosh-EFI-Asus-Zephyrus-S-GX531
 
-[![Release](https://img.shields.io/github/release/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/releases)
-[![Progress](https://img.shields.io/badge/Progress-Developing-ff69b4.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/README.md)
-[![License](https://img.shields.io/badge/License-GPLv3-lightgrey.svg)](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/LICENSE)
+[![Release](https://img.shields.io/github/release/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531.svg)](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/releases)
+[![Progress](https://img.shields.io/badge/Progress-Developing-ff69b4.svg)](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/README.md)
+[![License](https://img.shields.io/badge/License-GPLv3-lightgrey.svg)](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/LICENSE)
 
 A nearly perfect EFI for **Asus Zephyrus S GX531**
 
-ENGLISH | [简体中文](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/README-zh_CN.md)
+ENGLISH | [简体中文](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/README-zh_CN.md)
 
 This EFI is suitable for [ASUS ROG Zephyrus S GX531GS](https://www.asus.com/us/ROG-Republic-Of-Gamers/ROG-Zephyrus-S-GX531) and may also work on the whole GX531 family (GX531GX/GX531GV/GX531GW/GX531GM)
 
-Supports from 10.13.6(17G2112) ~ 10.14.6(18G84) or higher
+Supports from 10.13.6(17G2112) ~ 10.15 Beta (19A573a) or higher
 
 ## Computer Configuration
 
@@ -81,29 +81,29 @@ Supports from 10.13.6(17G2112) ~ 10.14.6(18G84) or higher
 
 ## Gallery
 
-![GX531](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/GX531.png)
+![GX531](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/GX531.png)
 
-![Info](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/1.png)
+![Info](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/1.png)
 
-![FnSound](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/2.png)
+![FnSound](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/2.png)
+![FnBrightness](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/3.png)
+![Herbination](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/Herbination.png)
 
-![FnBrightness](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/3.png)
+![ALC294](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/4.png)
 
-![ALC294](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/4.png)
+![Display](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/5.png)
 
-![Display](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/5.png)
+![Sound](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/6.png)
 
-![Sound](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/6.png)
+![Nvme](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/7.png)
 
-![Nvme](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/7.png)
+![Battery](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/8.png)
 
-![Battery](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/8.png)
+![Memory](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/9.png)
 
-![Memory](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/9.png)
+![Graphics](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/10.png)
 
-![Graphics](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/10.png)
-
-![USB3.1](https://github.com/williambj1/Hacintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/11.png)
+![USB3.1](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/Resources/11.png)
 
 ---
 
