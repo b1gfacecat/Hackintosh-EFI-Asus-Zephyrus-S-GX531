@@ -26,12 +26,12 @@ WSDir="$( cd "$(dirname "$0")" ; pwd -P )/Make"
 # Exit on Network Issue
 function networkErr() {
     echo "[ ${red}${bold}ERROR${reset} ]: Failed to download resources from ${URL}, please check your connection!"
-    clean
+    Cleanup
     exit 1
 }
 
 # Clean Up when Error Occurs
-function clean() {
+function Cleanup() {
     rm -rf $WSDir
 }
 
@@ -68,7 +68,7 @@ function DGR() {
 function DPB() {
     local URL="https://raw.githubusercontent.com/$1/$2/master/$3"
     echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${3##*\/})${reset} ${green}]${reset}"
-    echo "${cyan}"
+    echo -n "${cyan}"
     curl -# -L -O "${URL}" || networkErr
     echo "${reset}"
 }
@@ -99,13 +99,16 @@ function CTrash() {
 
 # Unpack
 function Unpack() {
-    unzip -qqu "*.zip"
+    echo "${green}[${reset} ${yellow}${bold}Unpacking${reset} ${green}]${reset}"
+    echo ""
+    local silent="$(unzip -qq -u "*.zip")"
 }
 
 # Compile dsl to aml
 function iasl2aml() {
     chmod +x iasl*
     echo "${green}[${reset} ${magenta}${bold}Compiling $1${reset} ${green}]${reset}"
+    echo ""
     local silent="$(./iasl* -vs -va ../Shared/ACPI/$1.dsl)"
 }
 
@@ -153,6 +156,12 @@ function Install() {
 #    exit 1
 #}
 
+# Enjoy
+function Enjoy() {
+    echo "${red}[${reset} ${blue}${bold}Done! Enjoy!${reset} ${red}]${reset}"
+    echo ""
+}
+
 function main() {
     if [ -d $WSDir ]; then
         rm -rf $WSDir
@@ -193,5 +202,11 @@ function main() {
 
     # Installation
     Install
+
+    # Clean up
+    Cleanup
+
+    # Enjoy
+    Enjoy
 }
 main
