@@ -33,6 +33,7 @@ function networkErr() {
 # Clean Up
 function Cleanup() {
     rm -rf $WSDir
+    rm -rf ../Shared/ACPI/*.aml
 }
 
 # Workaround for Release Binaries that don't include "RELEASE" in their file names (head or grep)
