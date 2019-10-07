@@ -30,7 +30,7 @@ function networkErr() {
     exit 1
 }
 
-# Clean Up when Error Occurs
+# Clean Up
 function Cleanup() {
     rm -rf $WSDir
 }
@@ -100,8 +100,8 @@ function CTrash() {
 # Unpack
 function Unpack() {
     echo "${green}[${reset} ${yellow}${bold}Unpacking${reset} ${green}]${reset}"
+    local silent="$(unzip -qq "*.zip")"
     echo ""
-    local silent="$(unzip -qq -u "*.zip")"
 }
 
 # Compile dsl to aml
@@ -151,9 +151,8 @@ function Install() {
 #}
 
 # Self-Update
-
 #function Update() {
-#    exit 1
+
 #}
 
 # Enjoy
