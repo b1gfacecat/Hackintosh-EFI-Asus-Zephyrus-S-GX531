@@ -10,11 +10,26 @@ ENGLISH | [简体中文](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephy
 
 This EFI is suitable for [ASUS ROG Zephyrus S GX531GS](https://www.asus.com/us/ROG-Republic-Of-Gamers/ROG-Zephyrus-S-GX531) and may also work on the whole GX531 family (GX531GX/GX531GV/GX531GW/GX531GM)
 
-Supports from 10.13.6(17G2112) ~ 10.15 Beta (19A573a) or higher
+Supports from 10.13.6(17G2112) ~ 10.15 Beta (19A582a) or higher
+
+## How Can I Build this EFI
+
+> Although I offer release achieves for the EFI, I don't update them often
+
+1. Clone this repo
+1. Run the following commands in your termianl
+
+   ```bash
+   cd <local repo root>
+   chmod +x Makefile.sh
+   ./Makefile.sh
+   ```
+
+> Make sure you have a reliable Internet Connection
 
 ## Computer Configuration
 
-| Specifications | Detail                                                                  |
+| Specifications | Details                                                                 |
 | -------------- | ----------------------------------------------------------------------- |
 | Computer model | ASUS ROG Zephyrus S GX531GS                                             |
 | Motherboard    | HM370                                                                   |

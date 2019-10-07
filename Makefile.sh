@@ -1,0 +1,197 @@
+#!/bin/bash
+
+# Created by Bat.bat(williambj1) on 6 Oct, 2019
+#
+# To have less binaries in the repo and get rid of kext updates because I'm EXTEREMELY lazy
+#
+# References:
+# https://github.com/daliansky/XiaoMi-Pro-Hackintosh/blob/master/install.sh by stevezhengshiqi
+# https://github.com/black-dragon74/OSX-Debug/blob/master/gen_debug.sh by black-dragon74
+
+# Colors
+black=`tput setaf 0`
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+blue=`tput setaf 4`
+magenta=`tput setaf 5`
+cyan=`tput setaf 6`
+white=`tput setaf 7`
+reset=`tput sgr0`
+bold=`tput bold`
+
+# WorkSpaceDir
+WSDir="$( cd "$(dirname "$0")" ; pwd -P )/Make"
+
+# Exit on Network Issue
+function networkErr() {
+    echo "[ ${red}${bold}ERROR${reset} ]: Failed to download resources from ${URL}, please check your connection!"
+    clean
+    exit 1
+}
+
+# Clean Up when Error Occurs
+function clean() {
+    rm -rf $WSDir
+}
+
+# Workaround for Release Binaries that don't include "RELEASE" in their file names (head or grep)
+function H_or_G() {
+    if [ "$1" == "VoodooI2C" ]; then
+        HG="head -n 1"
+    elif [ "$1" == "clover-builder" ]; then
+        HG="grep CLOVERX64.efi"
+    else
+        HG="grep -m 1 RELEASE"
+    fi
+}
+
+# Download GitHub Release
+function DGR() {
+    H_or_G $2
+
+    if [ "$3" == "PreRelease" ]; then
+        tag=""
+    else
+        tag="/latest"
+    fi
+
+    local rawURL="https://api.github.com/repos/$1/$2/releases$tag"
+    local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')"
+    echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${URL##*\/})${reset} ${green}]${reset}"
+    echo -n "${cyan}"
+    curl -# -L -O "${URL}" || networkErr
+    echo "${reset}"
+}
+
+# Download Pre-Built Binaries
+function DPB() {
+    local URL="https://raw.githubusercontent.com/$1/$2/master/$3"
+    echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${3##*\/})${reset} ${green}]${reset}"
+    echo "${cyan}"
+    curl -# -L -O "${URL}" || networkErr
+    echo "${reset}"
+}
+
+# Exclude Trash
+function CTrash() {
+    # Files
+    rm -rf *.app
+    rm -rf *.dSYM
+    rm -rf *.dsl
+    rm -rf *.sh
+    rm -rf *.plist
+    #rm -rf *.zip
+    rm -rf "AsusSMCDaemon"
+
+    # Folders
+    rm -rf "Docs"
+    rm -rf "dSYM"
+    rm -rf "Utilities"
+
+    # Kexts
+    rm -rf VoodooI2CAtmelMXT.kext
+    rm -rf VoodooI2CELAN.kext
+    rm -rf VoodooI2CFTE.kext
+    rm -rf VoodooI2CSynaptics.kext
+    rm -rf VoodooI2CUPDDEngine.kext
+}
+
+# Unpack
+function Unpack() {
+    unzip -qqu "*.zip"
+}
+
+# Compile dsl to aml
+function iasl2aml() {
+    chmod +x iasl*
+    echo "${green}[${reset} ${magenta}${bold}Compiling $1${reset} ${green}]${reset}"
+    local silent="$(./iasl* -vs -va ../Shared/ACPI/$1.dsl)"
+}
+
+# Install
+function Install() {
+    # Kexts
+    cp -R *.kext ../Clover/Kexts/Other
+    cp -R *.kext ../OpenCore/OC/Kexts
+    cp -R Kexts/*.kext ../Clover/Kexts/Other
+    cp -R Kexts/*.kext ../OpenCore/OC/Kexts
+    cp -R ../Shared/Kexts/*.kext ../Clover/Kexts/Other
+    cp -R ../Shared/Kexts/*.kext ../OpenCore/OC/Kexts
+
+    # Drivers
+    cp -R Drivers/*.efi ../Clover/Drivers/UEFI
+    cp -R Drivers/*.efi ../OpenCore/OC/Drivers
+    cp -R ../Shared/UEFI/*.efi ../Clover/Drivers/UEFI
+    cp -R ../Shared/UEFI/*.efi ../OpenCore/OC/Drivers
+
+    # Tools
+    cp -R Tools/* ../Clover/Tools
+    cp -R Tools/* ../OpenCore/OC/Tools
+
+    # ACPI
+    cp -R ../Shared/ACPI/*.aml ../Clover/ACPI/Patched
+    cp -R ../Shared/ACPI/*.aml ../OpenCore/OC/ACPI
+
+    # Clover
+    cp -R CLOVERX64.efi ../Clover
+}
+
+# Patch
+#function Patch() {
+
+#}
+
+# Check Local Repo Version
+#function CRV() {
+
+#}
+
+# Self-Update
+
+#function Update() {
+#    exit 1
+#}
+
+function main() {
+    if [ -d $WSDir ]; then
+        rm -rf $WSDir
+    fi
+    mkdir $WSDir
+    cd $WSDir
+
+    ACDT="Acidanthera"
+
+    # Download Kexts
+    DGR $ACDT Lilu
+    DGR $ACDT VirtualSMC
+    #DGR $ACDT AppleALC
+    DGR $ACDT CPUFriend
+    DGR $ACDT WhateverGreen
+    #DGR hieplpvip AsusSMC # (Not Ready)
+    #DGR alexandred VoodooI2C
+
+    # Clover
+    DGR Dids clover-builder
+
+    # OpenCore (Avaliable when OpenCore doesn't change its config anymore)
+    #DGR williambj1 OpenCore-Factory PreRelease
+
+    # Tools
+    DPB $ACDT MaciASL Dist/iasl-stable
+
+    Unpack
+    CTrash
+
+    # Compile DSL -> AML
+    iasl2aml SSDT-ALS0
+    iasl2aml SSDT-EC-USBX
+    iasl2aml SSDT-I2CBus
+    iasl2aml SSDT-PLUG
+    iasl2aml SSDT-PNLF
+    iasl2aml SSDT-RMNE
+
+    # Installation
+    Install
+}
+main

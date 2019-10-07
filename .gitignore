@@ -1,2 +1,9 @@
 .DS_Store
 ._*
+Make
+
+Clover/ACPI/Patched/*
+Clover/ACPI/Kexts/Other/*
+OpenCore/OC/ACPI/*
+OpenCore/OC/Kexts/*
+!.gitkeep

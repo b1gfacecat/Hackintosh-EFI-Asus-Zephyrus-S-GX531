@@ -8,7 +8,22 @@
 
 本EFI适用于[华硕玩家国度冰刃 3](https://www.asus.com.cn/ROG-Republic-Of-Gamers/ROG-Zephyrus-S-GX531/) - GX531GS 的黑苹果,也可能适用于整个冰刃 3 系列 (GX531GX/GX531GW/GX531GV/GX531GM)
 
-支持 10.13.6(17G2112) ~ 10.15 Beta (19A573a) 或更高
+支持 10.13.6(17G2112) ~ 10.15 Beta (19A582a) 或更高
+
+## 如何构建这个 EFI
+
+> 尽管我在 Release 里面提供了打包好的 EFI，我并不会经常更新
+
+1. Clone 这个仓库
+1. 在终端中输入如下命令
+
+   ```bash
+   cd <本地仓库根目录>
+   chmod +x Makefile.sh
+   ./Makefile.sh
+   ```
+
+> 确保网络通畅
 
 ## 笔记本配置
 
@@ -42,7 +57,7 @@
 
 ## 有点问题的设备
 
-- 声卡 ALC294（内置麦克风有噪音）
+- 声卡 ALC294 (内置麦克风有噪音)
   
 ## 不可用的设备
 
