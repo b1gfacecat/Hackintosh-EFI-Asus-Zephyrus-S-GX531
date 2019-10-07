@@ -3,7 +3,18 @@
 Make
 
 Clover/ACPI/Patched/*
-Clover/ACPI/Kexts/Other/*
+Clover/Kexts/Other/*
 OpenCore/OC/ACPI/*
 OpenCore/OC/Kexts/*
+Shared/ACPI/*.aml
+
+CLOVERX64.efi
+HFSPlus.efi
+VirtualSmc.efi
+libaistat.dylib
+rtcread
+smc
+smcread
+
 !.gitkeep
+!Shared/UEFI/HFSPlus.efi
