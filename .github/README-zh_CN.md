@@ -8,7 +8,7 @@
 
 本EFI适用于[华硕玩家国度冰刃 3](https://www.asus.com.cn/ROG-Republic-Of-Gamers/ROG-Zephyrus-S-GX531/) - GX531GS 的黑苹果,也可能适用于整个冰刃 3 系列 (GX531GX/GX531GW/GX531GV/GX531GM)
 
-支持 10.13.6(17G2112) ~ 10.15 Beta (19A582a) 或更高
+支持 10.13.6(17G2112) ~ 10.15 (19A583) 或更高
 
 ## 如何构建这个 EFI
 
