@@ -194,6 +194,7 @@ function main() {
 
     # Compile DSL -> AML
     iasl2aml SSDT-ALS0
+    iasl2aml SSDT-AWAC
     iasl2aml SSDT-EC-USBX
     iasl2aml SSDT-I2CBus
     iasl2aml SSDT-PLUG
