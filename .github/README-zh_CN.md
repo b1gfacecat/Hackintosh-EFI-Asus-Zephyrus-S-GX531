@@ -101,7 +101,7 @@
 ![FnSound](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/2.png)
 ![FnBrightness](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/3.png)
 ![Herbination](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/Herbination.png)
-![Keyboard Backlight](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/KB-Backlight.png.png)
+![Keyboard Backlight](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/KB-Backlight.png)
 
 ![ALC294](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/4.png)
 
