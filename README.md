@@ -103,6 +103,7 @@ Supports from 10.13.6(17G2112) ~ 10.15 (19A583) or higher
 ![FnSound](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/2.png)
 ![FnBrightness](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/3.png)
 ![Herbination](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/Herbination.png)
+![Keyboard Backlight](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/KB-Backlight.png.png)
 
 ![ALC294](https://github.com/williambj1/Hackintosh-EFI-Asus-Zephyrus-S-GX531/blob/master/.github/4.png)
 
