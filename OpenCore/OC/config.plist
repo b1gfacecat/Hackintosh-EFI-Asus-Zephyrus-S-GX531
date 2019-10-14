@@ -8,6 +8,14 @@
 		<array>
 			<dict>
 				<key>Comment</key>
+				<string>Force RTC</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-AWAC.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>Plugin Type=1</string>
 				<key>Enabled</key>
 				<true/>
@@ -59,7 +67,7 @@
 		<array>
 			<dict>
 				<key>Comment</key>
-				<string>Rename "USTP, 8" to "XSTP ,8", pair with SSDT-I2CBus</string>
+				<string>Rename &quot;USTP, 8&quot; to &quot;XSTP ,8&quot;, pair with SSDT-I2CBus</string>
 				<key>Count</key>
 				<integer>0</integer>
 				<key>Enabled</key>
@@ -590,7 +598,7 @@
 			<key>RequireVault</key>
 			<false/>
 			<key>ScanPolicy</key>
-			<integer>525571</integer>
+			<integer>0</integer>
 		</dict>
 		<key>Tools</key>
 		<array>
