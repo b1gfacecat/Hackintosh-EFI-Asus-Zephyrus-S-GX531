@@ -40,7 +40,7 @@ function Cleanup() {
 function H_or_G() {
     if [ "$1" == "VoodooI2C" ]; then
         HG="head -n 1"
-    elif [ "$1" == "clover-builder" ]; then
+    elif [ "$1" == "CloverBootloader" ]; then
         HG="grep CLOVERX64.efi"
     else
         HG="grep -m 1 RELEASE"
