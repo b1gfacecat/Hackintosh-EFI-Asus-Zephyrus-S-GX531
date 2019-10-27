@@ -181,7 +181,7 @@ function main() {
     #DGR alexandred VoodooI2C
 
     # Clover
-    DGR Dids clover-builder
+    DGR CloverHackyColor CloverBootloader
 
     # OpenCore (Avaliable when OpenCore doesn't change its config anymore)
     #DGR williambj1 OpenCore-Factory PreRelease
