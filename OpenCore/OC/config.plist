@@ -158,7 +158,7 @@
 			<key>PciRoot(0x0)/Pci(0x1f,0x3)</key>
 			<dict>
 				<key>layout-id</key>
-				<integer>21</integer>
+				<data>FQAAAA==</data>
 			</dict>
 		</dict>
 	</dict>
