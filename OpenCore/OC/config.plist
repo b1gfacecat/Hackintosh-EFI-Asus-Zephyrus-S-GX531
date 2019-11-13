@@ -570,9 +570,9 @@
 			<key>Resolution</key>
 			<string>1920x1080</string>
 			<key>ShowPicker</key>
-			<false/>
+			<true/>
 			<key>Timeout</key>
-			<integer>5</integer>
+			<integer>0</integer>
 			<key>UsePicker</key>
 			<true/>
 		</dict>
