@@ -65,6 +65,16 @@ function DGR() {
     echo "${reset}"
 }
 
+# Download Bitbucket Release
+function DBR() {
+    local rawURL="https://api.bitbucket.org/2.0/repositories/$1/$2/downloads/"
+    local URL="$(curl --silent "${rawURL}" | json_pp | grep 'href' | head -n 1 | tr -d '"' | tr -d ' ' | sed -e 's/href://')"
+    echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${URL##*\/})${reset} ${green}]${reset}"
+    echo -n "${cyan}"
+    curl -# -L -O "${URL}" || networkErr
+    echo "${reset}"
+}
+
 # Download Pre-Built Binaries
 function DPB() {
     local URL="https://raw.githubusercontent.com/$1/$2/master/$3"
@@ -78,17 +88,21 @@ function DPB() {
 function CTrash() {
     # Files
     rm -rf *.app
+    rm -rf *.aml
     rm -rf *.dSYM
     rm -rf *.dsl
     rm -rf *.sh
     rm -rf *.plist
-    #rm -rf *.zip
+    rm -rf *.txt
+    rm -rf *.zip
     rm -rf "AsusSMCDaemon"
 
     # Folders
     rm -rf "Docs"
     rm -rf "dSYM"
     rm -rf "Utilities"
+    rm -rf "Debug"
+    rm -rf "__MACOSX"
 
     # Kexts
     rm -rf VoodooI2CAtmelMXT.kext
@@ -96,6 +110,7 @@ function CTrash() {
     rm -rf VoodooI2CFTE.kext
     rm -rf VoodooI2CSynaptics.kext
     rm -rf VoodooI2CUPDDEngine.kext
+    rm -rf NullEthernetInjector.kext
 }
 
 # Unpack
@@ -116,12 +131,8 @@ function iasl2aml() {
 # Install
 function Install() {
     # Kexts
-    cp -R *.kext ../Clover/Kexts/Other
-    cp -R *.kext ../OpenCore/OC/Kexts
-    cp -R Kexts/*.kext ../Clover/Kexts/Other
-    cp -R Kexts/*.kext ../OpenCore/OC/Kexts
-    cp -R ../Shared/Kexts/*.kext ../Clover/Kexts/Other
-    cp -R ../Shared/Kexts/*.kext ../OpenCore/OC/Kexts
+    find . -type d -name "*.kext" | xargs -I{} cp -R {}  ../Clover/Kexts/Other
+    find . -type d -name "*.kext" | xargs -I{} cp -R {}  ../OpenCore/OC/Kexts
 
     # Drivers
     cp -R Drivers/*.efi ../Clover/Drivers/UEFI
@@ -177,8 +188,10 @@ function main() {
     #DGR $ACDT AppleALC
     DGR $ACDT CPUFriend
     DGR $ACDT WhateverGreen
+    DGR al3xtjames NoTouchID
     #DGR hieplpvip AsusSMC # (Not Ready)
     #DGR alexandred VoodooI2C
+    DBR Rehabman os-x-null-ethernet
 
     # Clover
     DGR CloverHackyColor CloverBootloader
