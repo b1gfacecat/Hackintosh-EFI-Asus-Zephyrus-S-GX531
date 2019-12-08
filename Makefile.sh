@@ -178,7 +178,7 @@ function iasl2aml() {
 function Install() {
     # Kexts
     for Kextdir in "../Clover/Kexts/Other" "../OpenCore/OC/Kexts"; do
-        find "../" -type d -name "*.kext" | xargs -I{} cp -R {} "$Kextdir"
+        find "../" -maxdepth 3 -type d -name "*.kext" | xargs -I{} cp -TR {} "$Kextdir" >/dev/null 2>&1
     done
 
     # Drivers
