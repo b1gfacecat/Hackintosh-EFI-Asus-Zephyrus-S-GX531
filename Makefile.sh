@@ -184,6 +184,7 @@ function Install() {
     # Drivers
     for dotEFIdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
         cp -R Drivers/*.efi "$dotEFIdir"
+        cp -R ../Shared/UEFI/*.efi "$dotEFIdir"
     done
 
     # ACPI
