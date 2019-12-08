@@ -21,7 +21,7 @@ reset=`tput sgr0`
 bold=`tput bold`
 
 # WorkSpaceDir
-WSDir="$( cd "$(dirname "$0")" ; pwd -P )/Make"
+WSDir="$( cd "$(dirname "$0")" ; pwd -P )/.Make"
 
 # Exit on Network Issue
 function networkErr() {
@@ -51,8 +51,15 @@ function H_or_G() {
 function DGR() {
     H_or_G $2
 
-    if [ "$3" == "PreRelease" ]; then
-        tag=""
+    if [[ ! -z ${3+x} ]]; then
+        if [ "$3" == "PreRelease" ]; then
+            tag=""
+        elif [ "$3" == "NULL" ]; then
+            tag="/latest"
+        else
+            #only release_id is supported
+            tag="/$3"
+        fi
     else
         tag="/latest"
     fi
@@ -61,7 +68,9 @@ function DGR() {
     local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')" || networkErr
     echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
     echo "${cyan}"
+    cd ./$4
     curl -# -L -O "${URL}" || networkErr
+    cd - >/dev/null 2>&1
     echo "${reset}"
 }
 
@@ -115,19 +124,39 @@ function CTrash() {
     rm -rf NullEthernetInjector.kext
 }
 
-# Extract files from CloverISO
+# Extract files for Clover
 function ExtractClover() {
+    #From CloverISO
     tar --lzma -xvf CloverISO*.tar.lzma >/dev/null 2>&1
     hdiutil mount Clover-v2.*.iso >/dev/null 2>&1
     ImageMountDir="$(dirname /Volumes/Clover-v2.*/EFI/CLOVER)/CLOVER"
     cp -R "$ImageMountDir"/CLOVERX64.efi "../Clover"
     cp -R "$ImageMountDir"/tools/*.efi "../Clover/Tools"
 
-    for CLOVERdotEFIdrv in ApfsDriverLoader AptioInputFix AptioMemoryFix EmuVariableUefi; do
+    for CLOVERdotEFIdrv in ApfsDriverLoader AptioMemoryFix EmuVariableUefi; do
         cp -R "$ImageMountDir"/drivers/off/${CLOVERdotEFIdrv}.efi "../Clover/Drivers/UEFI"
     done
 
     hdiutil unmount "$(dirname /Volumes/Clover-v2.*/EFI)" >/dev/null 2>&1
+
+    #From AppleSupportPkg 2.0.9
+    cd CLOVER_LASPKG && unzip *.zip >/dev/null 2>&1; cd - >/dev/null 2>&1
+
+    for CLOVERdotEFIdrvASPKG in AppleGenericInput AppleUiSupport; do
+        cp -R CLOVER_LASPKG/Drivers/${CLOVERdotEFIdrvASPKG}.efi "../Clover/Drivers/UEFI"
+    done
+}
+
+# Extract files from OpenCore
+function ExtractOC() {
+    cp -R EFI/BOOT/BOOTx64.efi "../OpenCore/Boot"
+    cp -R EFI/OC/OpenCore.efi "../OpenCore/OC"
+    cd OC_ASPKG && unzip *.zip >/dev/null 2>&1; cd - >/dev/null 2>&1
+    cp -R OC_ASPKG/Tools/VerifyMsrE2.efi ../OpenCore/OC/Tools
+
+    for OCdotEFIdrv in ApfsDriverLoader FwRuntimeServices; do
+        cp -R OC_ASPKG/Drivers/${OCdotEFIdrv}.efi "../OpenCore/OC/Drivers"
+    done
 }
 
 # Unpack
@@ -156,11 +185,6 @@ function Install() {
     for dotEFIdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
         cp -R Drivers/*.efi "$dotEFIdir"
         cp -R ../Shared/UEFI/*.efi "$dotEFIdir"
-    done
-
-    # Tools
-    for Tooldir in "../Clover/Tools" "../OpenCore/OC/Tools"; do
-        cp -R Tools/* "$Tooldir"
     done
 
     # ACPI
@@ -196,6 +220,8 @@ function main() {
     fi
     mkdir $WSDir
     cd $WSDir
+    mkdir OC_ASPKG
+    mkdir CLOVER_LASPKG
 
     ACDT="Acidanthera"
 
@@ -205,6 +231,8 @@ function main() {
     #DGR $ACDT AppleALC
     DGR $ACDT CPUFriend
     DGR $ACDT WhateverGreen
+    DGR $ACDT AppleSupportPkg NULL OC_ASPKG
+    DGR $ACDT AppleSupportPkg 19214108 CLOVER_LASPKG
     DGR al3xtjames NoTouchID
     #DGR hieplpvip AsusSMC # (Not Ready)
     #DGR alexandred VoodooI2C
@@ -231,6 +259,7 @@ function main() {
     # Installation
     Install
     ExtractClover
+    ExtractOC
 
     # Clean up
     Cleanup
