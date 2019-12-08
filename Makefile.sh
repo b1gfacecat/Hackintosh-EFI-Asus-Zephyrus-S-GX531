@@ -41,7 +41,7 @@ function H_or_G() {
     if [ "$1" == "VoodooI2C" ]; then
         HG="head -n 1"
     elif [ "$1" == "CloverBootloader" ]; then
-        HG="grep CLOVERX64.efi"
+        HG="grep CloverISO"
     else
         HG="grep -m 1 RELEASE"
     fi
@@ -58,9 +58,9 @@ function DGR() {
     fi
 
     local rawURL="https://api.github.com/repos/$1/$2/releases$tag"
-    local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')"
-    echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${URL##*\/})${reset} ${green}]${reset}"
-    echo -n "${cyan}"
+    local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')" || networkErr
+    echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
+    echo "${cyan}"
     curl -# -L -O "${URL}" || networkErr
     echo "${reset}"
 }
@@ -68,9 +68,9 @@ function DGR() {
 # Download Bitbucket Release
 function DBR() {
     local rawURL="https://api.bitbucket.org/2.0/repositories/$1/$2/downloads/"
-    local URL="$(curl --silent "${rawURL}" | json_pp | grep 'href' | head -n 1 | tr -d '"' | tr -d ' ' | sed -e 's/href://')"
-    echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${URL##*\/})${reset} ${green}]${reset}"
-    echo -n "${cyan}"
+    local URL="$(curl --silent "${rawURL}" | json_pp | grep 'href' | head -n 1 | tr -d '"' | tr -d ' ' | sed -e 's/href://')" || networkErr
+    echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
+    echo "${cyan}"
     curl -# -L -O "${URL}" || networkErr
     echo "${reset}"
 }
@@ -78,9 +78,11 @@ function DBR() {
 # Download Pre-Built Binaries
 function DPB() {
     local URL="https://raw.githubusercontent.com/$1/$2/master/$3"
-    echo "${green}[${reset} ${blue}${bold}Downloading $(echo ${3##*\/})${reset} ${green}]${reset}"
-    echo -n "${cyan}"
+    echo "${green}[${reset}${blue}${bold} Downloading $(echo ${3##*\/}) ${reset}${green}]${reset}"
+    echo "${cyan}"
+    cd ./$4
     curl -# -L -O "${URL}" || networkErr
+    cd - >/dev/null 2>&1
     echo "${reset}"
 }
 
@@ -113,43 +115,58 @@ function CTrash() {
     rm -rf NullEthernetInjector.kext
 }
 
+# Extract files from CloverISO
+function ExtractClover() {
+    tar --lzma -xvf CloverISO*.tar.lzma >/dev/null 2>&1
+    hdiutil mount Clover-v2.*.iso >/dev/null 2>&1
+    ImageMountDir="$(dirname /Volumes/Clover-v2.*/EFI/CLOVER)/CLOVER"
+    cp -R "$ImageMountDir"/CLOVERX64.efi "../Clover"
+    cp -R "$ImageMountDir"/tools/*.efi "../Clover/Tools"
+
+    for CLOVERdotEFIdrv in ApfsDriverLoader AptioInputFix AptioMemoryFix EmuVariableUefi; do
+        cp -R "$ImageMountDir"/drivers/off/${CLOVERdotEFIdrv}.efi "../Clover/Drivers/UEFI"
+    done
+
+    hdiutil unmount "$(dirname /Volumes/Clover-v2.*/EFI)" >/dev/null 2>&1
+}
+
 # Unpack
 function Unpack() {
-    echo "${green}[${reset} ${yellow}${bold}Unpacking${reset} ${green}]${reset}"
-    local silent="$(unzip -qq "*.zip")"
+    echo "${green}[${reset}${yellow}${bold} Unpacking ${reset}${green}]${reset}"
     echo ""
+    unzip -qq "*.zip" >/dev/null 2>&1
 }
 
 # Compile dsl to aml
 function iasl2aml() {
     chmod +x iasl*
-    echo "${green}[${reset} ${magenta}${bold}Compiling $1${reset} ${green}]${reset}"
+    echo "${green}[${reset}${magenta}${bold} Compiling ACPI Files ${reset}${green}]${reset}"
     echo ""
-    local silent="$(./iasl* -vs -va ../Shared/ACPI/$1.dsl)"
+    find "../Shared/ACPI/" -type f -name "*.dsl" | xargs -I{} ./iasl* -vs -va {} >/dev/null 2>&1
 }
 
 # Install
 function Install() {
     # Kexts
-    find . -type d -name "*.kext" | xargs -I{} cp -R {}  ../Clover/Kexts/Other
-    find . -type d -name "*.kext" | xargs -I{} cp -R {}  ../OpenCore/OC/Kexts
+    for Kextdir in "../Clover/Kexts/Other" "../OpenCore/OC/Kexts"; do
+        find "../" -type d -name "*.kext" | xargs -I{} cp -R {} "$Kextdir"
+    done
 
     # Drivers
-    cp -R Drivers/*.efi ../Clover/Drivers/UEFI
-    cp -R Drivers/*.efi ../OpenCore/OC/Drivers
-    cp -R ../Shared/UEFI/*.efi ../Clover/Drivers/UEFI
-    cp -R ../Shared/UEFI/*.efi ../OpenCore/OC/Drivers
+    for dotEFIdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
+        cp -R Drivers/*.efi "$dotEFIdir"
+        cp -R ../Shared/UEFI/*.efi "$dotEFIdir"
+    done
 
     # Tools
-    cp -R Tools/* ../Clover/Tools
-    cp -R Tools/* ../OpenCore/OC/Tools
+    for Tooldir in "../Clover/Tools" "../OpenCore/OC/Tools"; do
+        cp -R Tools/* "$Tooldir"
+    done
 
     # ACPI
-    cp -R ../Shared/ACPI/*.aml ../Clover/ACPI/Patched
-    cp -R ../Shared/ACPI/*.aml ../OpenCore/OC/ACPI
-
-    # Clover
-    cp -R CLOVERX64.efi ../Clover
+    for ACPIdir in "../Clover/ACPI/Patched" "../OpenCore/OC/ACPI"; do
+        cp -R ../Shared/ACPI/*.aml "$ACPIdir"
+    done
 }
 
 # Patch
@@ -169,7 +186,7 @@ function Install() {
 
 # Enjoy
 function Enjoy() {
-    echo "${red}[${reset} ${blue}${bold}Done! Enjoy!${reset} ${red}]${reset}"
+    echo "${red}[${reset}${blue}${bold} Done! Enjoy! ${reset}${red}]${reset}"
     echo ""
 }
 
@@ -196,26 +213,24 @@ function main() {
     # Clover
     DGR CloverHackyColor CloverBootloader
 
-    # OpenCore (Avaliable when OpenCore doesn't change its config anymore)
-    #DGR williambj1 OpenCore-Factory PreRelease
+    # OpenCore
+    DGR williambj1 OpenCore-Factory PreRelease
 
     # Tools
     DPB $ACDT MaciASL Dist/iasl-stable
+
+    # HFSPlus.efi
+    DPB STLVNUB CloverGrower Files/HFSPlus/x64/HFSPlus.efi "../Shared/UEFI"
 
     Unpack
     CTrash
 
     # Compile DSL -> AML
-    iasl2aml SSDT-ALS0
-    iasl2aml SSDT-AWAC
-    iasl2aml SSDT-EC-USBX
-    iasl2aml SSDT-I2CBus
-    iasl2aml SSDT-PLUG
-    iasl2aml SSDT-PNLF
-    iasl2aml SSDT-RMNE
+    iasl2aml
 
     # Installation
     Install
+    ExtractClover
 
     # Clean up
     Cleanup
