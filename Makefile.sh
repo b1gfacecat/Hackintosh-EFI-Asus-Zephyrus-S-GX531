@@ -25,7 +25,7 @@ WSDir="$( cd "$(dirname "$0")" ; pwd -P )/.Make"
 
 # Exit on Network Issue
 function networkErr() {
-    echo "[ ${red}${bold}ERROR${reset} ]: Failed to download resources from ${URL}, please check your connection!"
+    echo "${yellow}[${reset}${red}${bold} ERROR ${reset}${yellow}]${reset}: Failed to download resources from ${URL}, please check your connection!"
     Cleanup
     exit 1
 }
