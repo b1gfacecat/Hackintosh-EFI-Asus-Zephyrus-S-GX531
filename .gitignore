@@ -3,6 +3,7 @@
 ._*
 
 # Makefile
+Build/*
 .Make/*
 Shared/ACPI/*.aml
 Shared/UEFI/*
