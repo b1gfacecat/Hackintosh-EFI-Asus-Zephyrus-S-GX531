@@ -9,16 +9,18 @@
 # https://github.com/black-dragon74/OSX-Debug/blob/master/gen_debug.sh by black-dragon74
 
 # Colors
-black=`tput setaf 0`
-red=`tput setaf 1`
-green=`tput setaf 2`
-yellow=`tput setaf 3`
-blue=`tput setaf 4`
-magenta=`tput setaf 5`
-cyan=`tput setaf 6`
-white=`tput setaf 7`
-reset=`tput sgr0`
-bold=`tput bold`
+if [[ -z ${GITHUB_ACTIONS+x} ]]; then
+    black=`tput setaf 0`
+    red=`tput setaf 1`
+    green=`tput setaf 2`
+    yellow=`tput setaf 3`
+    blue=`tput setaf 4`
+    magenta=`tput setaf 5`
+    cyan=`tput setaf 6`
+    white=`tput setaf 7`
+    reset=`tput sgr0`
+    bold=`tput bold`
+fi
 
 # WorkSpaceDir
 WSDir="$( cd "$(dirname "$0")" ; pwd -P )/.Make"
@@ -178,7 +180,7 @@ function iasl2aml() {
 function Install() {
     # Kexts
     for Kextdir in "../Clover/Kexts/Other" "../OpenCore/OC/Kexts"; do
-        find "../" -maxdepth 3 -type d -name "*.kext" | xargs -I{} cp -TR {} "$Kextdir" >/dev/null 2>&1
+        find "../" -maxdepth 3 -type d -name "*.kext" | xargs -I{} cp -R {} "$Kextdir" >/dev/null 2>&1
     done
 
     # Drivers
