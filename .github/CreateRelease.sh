@@ -4,7 +4,16 @@ if command -v git >/dev/null 2>&1; then
     cd $(git rev-parse --show-toplevel) && mkdir Build
     rmURL="$(git config --get remote.origin.url)"
     Ver=$(curl --silent https://api.github.com/repos/"$(echo ${rmURL:19} | sed 's/.git//')"/releases/latest | grep 'tag_name' | tr -d '"' | tr -d ' ' | tr -d ',' | sed -e 's/tag_name:v//') || networkErr
-    NewVer="${Ver%.*}.$((${Ver##*.}+1))"
+
+    if [[ ${Ver##*.} == 9 ]]; then
+        if [[ ${Ver:2:1} == 9 ]]; then
+            NewVer="$((${Ver:0:1}+1)).0.0"
+        else
+            NewVer="${Ver:0:1}.$((${Ver:2:1}+1)).0"
+        fi
+    else
+        NewVer="${Ver%.*}.$((${Ver##*.}+1))"
+    fi
 
     if [[ ! -z ${GITHUB_ACTIONS+x} ]]; then
         echo "::set-env name=NewVer::$NewVer"
