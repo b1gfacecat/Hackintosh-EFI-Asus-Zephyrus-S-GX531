@@ -16,7 +16,7 @@ if command -v git >/dev/null 2>&1; then
     echo "# v${NewVer}" >> ReleaseNotes.md
     echo "- **This is the full EFI**" >> ReleaseNotes.md
     git log -"$(git rev-list --count $(git rev-list --tags | head -n 1)..HEAD)" --format="- %H %s" | grep -v 'Makefile\|.gitignore\|Repo\|Docs\|Merge' | sed  '/^$/d' >> ReleaseNotes.md
-        
+
     # Get OpenCore version and release url
     OcReInfo="$(curl --silent https://api.github.com/repos/williambj1/OpenCore-Factory/releases | head -n 45)"
     OcTag="$(echo "$OcReInfo" | grep 'tag_name' | tr -d '"' | tr -d ' ' | tr -d ',' | sed -e 's/tag_name://')"
