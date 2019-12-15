@@ -196,9 +196,11 @@ function Install() {
 }
 
 # Patch
-#function Patch() {
-
-#}
+function Patch() {
+    # Patches for VoodooI2C
+    /usr/libexec/PlistBuddy -c "Delete :IOKitPersonalities:VoodooI2CPCIController:IONameMatch" VoodooI2C.kext/Contents/Info.plist
+    /usr/libexec/PlistBuddy -c "Add :IOKitPersonalities:VoodooI2CPCIController:IONameMatch:'Item 0' string pci8086,a369" VoodooI2C.kext/Contents/Info.plist
+}
 
 # Check Local Repo Version
 #function CRV() {
@@ -216,15 +218,7 @@ function Enjoy() {
     echo ""
 }
 
-function main() {
-    if [ -d $WSDir ]; then
-        rm -rf $WSDir
-    fi
-    mkdir $WSDir
-    cd $WSDir
-    mkdir OC_ASPKG
-    mkdir CLOVER_LASPKG
-
+function DL() {
     ACDT="Acidanthera"
 
     # Download Kexts
@@ -237,7 +231,7 @@ function main() {
     DGR $ACDT AppleSupportPkg 19214108 CLOVER_LASPKG
     DGR al3xtjames NoTouchID
     #DGR hieplpvip AsusSMC # (Not Ready)
-    #DGR alexandred VoodooI2C
+    DGR alexandred VoodooI2C
     DBR Rehabman os-x-null-ethernet
 
     # Clover
@@ -251,9 +245,29 @@ function main() {
 
     # HFSPlus.efi
     DPB STLVNUB CloverGrower Files/HFSPlus/x64/HFSPlus.efi "../Shared/UEFI"
+}
 
+function Init() {
+    if [[ $OSTYPE != darwin* ]]; then
+        echo "This script can only run in macOS, aborting"
+        exit 1
+    fi
+
+    if [ -d $WSDir ]; then
+        rm -rf $WSDir
+    fi
+    mkdir $WSDir
+    cd $WSDir
+    mkdir OC_ASPKG
+    mkdir CLOVER_LASPKG
+}
+
+function main() {
+    Init
+    DL
     Unpack
     CTrash
+    Patch
 
     # Compile DSL -> AML
     iasl2aml
