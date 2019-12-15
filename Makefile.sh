@@ -199,7 +199,8 @@ function Install() {
 function Patch() {
     # Patches for VoodooI2C
     /usr/libexec/PlistBuddy -c "Delete :IOKitPersonalities:VoodooI2CPCIController:IONameMatch" VoodooI2C.kext/Contents/Info.plist
-    /usr/libexec/PlistBuddy -c "Add :IOKitPersonalities:VoodooI2CPCIController:IONameMatch:'Item 0' string pci8086,a369" VoodooI2C.kext/Contents/Info.plist
+    /usr/libexec/PlistBuddy -c "Add :IOKitPersonalities:VoodooI2CPCIController:IONameMatch array" VoodooI2C.kext/Contents/Info.plist
+    /usr/libexec/PlistBuddy -c "Add :IOKitPersonalities:VoodooI2CPCIController:IONameMatch:0 string pci8086,a369" VoodooI2C.kext/Contents/Info.plist
 }
 
 # Check Local Repo Version
