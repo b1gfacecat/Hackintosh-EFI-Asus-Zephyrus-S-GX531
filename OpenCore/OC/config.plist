@@ -463,6 +463,8 @@
 				<string>prev-lang:kbd</string>
 			</array>
 		</dict>
+		<key>WriteFlash</key>
+		<true/>
 	</dict>
 	<key>PlatformInfo</key>
 	<dict>
@@ -475,6 +477,8 @@
 			<key>ROM</key>
 			<data></data>
 			<key>SpoofVendor</key>
+			<true/>
+			<key>SupportsCsm</key>
 			<true/>
 			<key>SystemProductName</key>
 			<string>MacBookPro15,3</string>
@@ -518,6 +522,8 @@
 		</dict>
 		<key>Protocols</key>
 		<dict>
+			<key>AppleSmcIo</key>
+			<true/>
 			<key>ConsoleControl</key>
 			<true/>
 		</dict>
