@@ -67,7 +67,7 @@ function DGR() {
     fi
 
     local rawURL="https://api.github.com/repos/$1/$2/releases$tag"
-    local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')" || networkErr
+    local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')"
     echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
     echo "${cyan}"
     cd ./$4
@@ -79,7 +79,7 @@ function DGR() {
 # Download Bitbucket Release
 function DBR() {
     local rawURL="https://api.bitbucket.org/2.0/repositories/$1/$2/downloads/"
-    local URL="$(curl --silent "${rawURL}" | json_pp | grep 'href' | head -n 1 | tr -d '"' | tr -d ' ' | sed -e 's/href://')" || networkErr
+    local URL="$(curl --silent "${rawURL}" | json_pp | grep 'href' | head -n 1 | tr -d '"' | tr -d ' ' | sed -e 's/href://')"
     echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
     echo "${cyan}"
     curl -# -L -O "${URL}" || networkErr
@@ -153,12 +153,10 @@ function ExtractClover() {
 function ExtractOC() {
     cp -R EFI/BOOT/BOOTx64.efi "../OpenCore/Boot"
     cp -R EFI/OC/OpenCore.efi "../OpenCore/OC"
+    cp -R EFI/OC/Drivers/* "../OpenCore/OC/Drivers"
     cd OC_ASPKG && unzip *.zip >/dev/null 2>&1; cd - >/dev/null 2>&1
     cp -R OC_ASPKG/Tools/VerifyMsrE2.efi ../OpenCore/OC/Tools
-
-    for OCdotEFIdrv in ApfsDriverLoader FwRuntimeServices; do
-        cp -R OC_ASPKG/Drivers/${OCdotEFIdrv}.efi "../OpenCore/OC/Drivers"
-    done
+    cp -R OC_ASPKG/Drivers/ApfsDriverLoader.efi "../OpenCore/OC/Drivers"
 }
 
 # Unpack
@@ -184,10 +182,7 @@ function Install() {
     done
 
     # Drivers
-    for dotEFIdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
-        cp -R Drivers/*.efi "$dotEFIdir"
-        cp -R ../Shared/UEFI/*.efi "$dotEFIdir"
-    done
+    cp -R Drivers/*.efi "../Clover/Drivers/UEFI"
 
     # ACPI
     for ACPIdir in "../Clover/ACPI/Patched" "../OpenCore/OC/ACPI"; do
