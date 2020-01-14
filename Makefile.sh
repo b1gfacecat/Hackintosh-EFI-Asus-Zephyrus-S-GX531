@@ -153,9 +153,9 @@ function ExtractClover() {
 function ExtractOC() {
     cp -R EFI/BOOT/BOOTx64.efi "../OpenCore/Boot"
     cp -R EFI/OC/OpenCore.efi "../OpenCore/OC"
-    cp -R EFI/OC/Drivers/* "../OpenCore/OC/Drivers"
+    cp -R EFI/OC/Drivers/FwRuntimeServices.efi "../OpenCore/OC/Drivers"
+    cp -R EFI/OC/Tools/VerifyMsrE2.efi ../OpenCore/OC/Tools
     cd OC_ASPKG && unzip *.zip >/dev/null 2>&1; cd - >/dev/null 2>&1
-    cp -R OC_ASPKG/Tools/VerifyMsrE2.efi ../OpenCore/OC/Tools
     cp -R OC_ASPKG/Drivers/ApfsDriverLoader.efi "../OpenCore/OC/Drivers"
 }
 
