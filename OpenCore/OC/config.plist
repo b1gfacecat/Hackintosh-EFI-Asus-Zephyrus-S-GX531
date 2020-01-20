@@ -8,6 +8,14 @@
 		<array>
 			<dict>
 				<key>Comment</key>
+				<string>Enable Native Hardware NVRAM</string>
+				<key>Enabled</key>
+				<true/>
+				<key>Path</key>
+				<string>SSDT-PMC.aml</string>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>Force RTC</string>
 				<key>Enabled</key>
 				<true/>
@@ -91,8 +99,6 @@
 			<key>AvoidRuntimeDefrag</key>
 			<true/>
 			<key>DisableSingleUser</key>
-			<true/>
-			<key>DisableVariableWrite</key>
 			<true/>
 			<key>EnableSafeModeSlide</key>
 			<true/>
@@ -435,32 +441,6 @@
 			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
 			<array>
 				<string>boot-args</string>
-			</array>
-		</dict>
-		<key>LegacyEnable</key>
-		<true/>
-		<key>LegacySchema</key>
-		<dict>
-			<key>8BE4DF61-93CA-11D2-AA0D-00E098032B8C</key>
-			<array>
-				<string>Boot0080</string>
-				<string>Boot0081</string>
-				<string>Boot0082</string>
-				<string>BootNext</string>
-				<string>BootOrder</string>
-			</array>
-			<key>7C436110-AB2A-4BBB-A880-FE41995C9F82</key>
-			<array>
-				<string>EFILoginHiDPI</string>
-				<string>EFIBluetoothDelay</string>
-				<string>LocationServicesEnabled</string>
-				<string>SystemAudioVolume</string>
-				<string>SystemAudioVolumeDB</string>
-				<string>bluetoothActiveControllerInfo</string>
-				<string>bluetoothInternalControllerInfo</string>
-				<string>flagstate</string>
-				<string>fmm-computer-name</string>
-				<string>prev-lang:kbd</string>
 			</array>
 		</dict>
 		<key>WriteFlash</key>

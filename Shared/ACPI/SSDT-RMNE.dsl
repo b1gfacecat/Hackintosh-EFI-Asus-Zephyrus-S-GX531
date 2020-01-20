@@ -61,4 +61,3 @@ DefinitionBlock ("", "SSDT", 2, "RehabM", "RMNE", 0x00001000)
         }
     }
 }
-

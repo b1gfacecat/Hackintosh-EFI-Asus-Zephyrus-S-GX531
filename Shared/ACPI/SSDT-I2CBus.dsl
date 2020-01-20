@@ -14,4 +14,3 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "USTP", 0x00000000)
         }
     }
 }
-

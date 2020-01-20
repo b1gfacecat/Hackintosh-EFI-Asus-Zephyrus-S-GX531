@@ -292,4 +292,3 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "PNLF", 0x00000000)
         }
     }
 }
-
