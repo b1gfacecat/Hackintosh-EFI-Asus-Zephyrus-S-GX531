@@ -8,7 +8,10 @@ DefinitionBlock ("", "SSDT", 2, "ACDT", "AWAC", 0x00000000)
         {
             If (_OSI ("Darwin"))
             {
-                STAS = One
+                If (CondRefOf (STAS))
+                {
+                    STAS = One
+                }
             }
         }
     }

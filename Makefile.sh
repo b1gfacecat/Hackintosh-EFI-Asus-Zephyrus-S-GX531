@@ -69,6 +69,8 @@ function H_or_G() {
         HG="head -n 1"
     elif [[ "$1" == "CloverBootloader" ]]; then
         HG="grep CloverISO"
+    elif [[ "$1" == "IntelBluetoothFirmware" ]]; then
+        HG="grep $2"
     else
         HG="grep -m 1 RELEASE"
     fi
@@ -76,7 +78,7 @@ function H_or_G() {
 
 # Download GitHub Release
 function DGR() {
-    H_or_G $2
+    H_or_G $2 $5
 
     if [[ ! -z ${3+x} ]]; then
         if [[ "$3" == "PreRelease" ]]; then
@@ -222,6 +224,9 @@ function Install() {
 
     # Drivers
     cp -R Drivers/*.efi "../Clover/Drivers/UEFI"
+    for ACPIdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
+        cp -R ../Shared/UEFI/*.efi
+    done
 
     # ACPI
     for ACPIdir in "../Clover/ACPI/Patched" "../OpenCore/OC/ACPI"; do
@@ -262,11 +267,14 @@ function DL() {
     #DGR $ACDT AppleALC
     DGR $ACDT CPUFriend
     DGR $ACDT WhateverGreen
+    DGR $ACDT NVMeFix
     DGR $ACDT AppleSupportPkg NULL OC_ASPKG
     DGR $ACDT AppleSupportPkg 19214108 CLOVER_LASPKG
     DGR al3xtjames NoTouchID
     #DGR hieplpvip AsusSMC # (Not Ready)
     DGR alexandred VoodooI2C
+    DGR zxystd IntelBluetoothFirmware NULL '.' Firmware
+    DGR zxystd IntelBluetoothFirmware NULL '.' Injector
     DBR Rehabman os-x-null-ethernet
 
     # Clover
