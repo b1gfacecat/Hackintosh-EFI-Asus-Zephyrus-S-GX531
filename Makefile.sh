@@ -273,8 +273,8 @@ function DL() {
     DGR al3xtjames NoTouchID
     #DGR hieplpvip AsusSMC # (Not Ready)
     DGR alexandred VoodooI2C
-    DGR zxystd IntelBluetoothFirmware NULL '.' Firmware
-    DGR zxystd IntelBluetoothFirmware NULL '.' Injector
+    DGR zxystd IntelBluetoothFirmware NULL '.' Firmware.kext
+    DGR zxystd IntelBluetoothFirmware NULL '.' Injector.kext
     DBR Rehabman os-x-null-ethernet
 
     # Clover
