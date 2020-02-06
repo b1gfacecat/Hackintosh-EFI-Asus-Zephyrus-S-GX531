@@ -86,11 +86,11 @@ function DGR() {
         elif [[ "$3" == "NULL" ]]; then
             tag="/latest"
         else
-            if [[ $GH_API == True ]]; then
+            if [[ ! -z ${GITHUB_ACTIONS+x} || $GH_API == False ]]; then
+                tag="/tag/2.0.9"
+            else
                 #only release_id is supported
                 tag="/$3"
-            else
-                tag="/tag/2.0.9"
             fi
         fi
     else
