@@ -224,8 +224,8 @@ function Install() {
 
     # Drivers
     cp -R Drivers/*.efi "../Clover/Drivers/UEFI"
-    for ACPIdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
-        cp -R ../Shared/UEFI/*.efi
+    for Driverdir in "../Clover/Drivers/UEFI" "../OpenCore/OC/Drivers"; do
+        cp -R ../Shared/UEFI/*.efi "$Driverdir"
     done
 
     # ACPI
