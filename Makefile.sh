@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Created by Bat.bat(williambj1) on 6 Oct, 2019
 #
@@ -7,6 +7,32 @@
 # References:
 # https://github.com/daliansky/XiaoMi-Pro-Hackintosh/blob/master/install.sh by stevezhengshiqi
 # https://github.com/black-dragon74/OSX-Debug/blob/master/gen_debug.sh by black-dragon74
+
+# WorkSpaceDir
+WSDir="$( cd "$(dirname "$0")" ; pwd -P )/.Make"
+
+# Vars
+GH_API=True
+CLEAN_UP=True
+
+# Args
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        --NO_GH_API)
+        GH_API=False
+        shift # past argument
+        ;;
+        --NO_CLEAN_UP)
+        CLEAN_UP=False
+        shift # past argument
+        ;;
+        *)
+        shift
+        ;;
+    esac
+done
 
 # Colors
 if [[ -z ${GITHUB_ACTIONS+x} ]]; then
@@ -22,27 +48,26 @@ if [[ -z ${GITHUB_ACTIONS+x} ]]; then
     bold=`tput bold`
 fi
 
-# WorkSpaceDir
-WSDir="$( cd "$(dirname "$0")" ; pwd -P )/.Make"
-
 # Exit on Network Issue
 function networkErr() {
-    echo "${yellow}[${reset}${red}${bold} ERROR ${reset}${yellow}]${reset}: Failed to download resources from ${URL}, please check your connection!"
+    echo "${yellow}[${reset}${red}${bold} ERROR ${reset}${yellow}]${reset}: Failed to download resources from ${1}, please check your connection!"
     Cleanup
     exit 1
 }
 
 # Clean Up
 function Cleanup() {
-    rm -rf $WSDir
-    rm -rf ../Shared/ACPI/*.aml
+    if [[ $NO_CLEAN_UP == False ]]; then
+        rm -rf $WSDir
+        rm -rf ../Shared/ACPI/*.aml
+    fi
 }
 
 # Workaround for Release Binaries that don't include "RELEASE" in their file names (head or grep)
 function H_or_G() {
-    if [ "$1" == "VoodooI2C" ]; then
+    if [[ "$1" == "VoodooI2C" ]]; then
         HG="head -n 1"
-    elif [ "$1" == "CloverBootloader" ]; then
+    elif [[ "$1" == "CloverBootloader" ]]; then
         HG="grep CloverISO"
     else
         HG="grep -m 1 RELEASE"
@@ -54,24 +79,38 @@ function DGR() {
     H_or_G $2
 
     if [[ ! -z ${3+x} ]]; then
-        if [ "$3" == "PreRelease" ]; then
+        if [[ "$3" == "PreRelease" ]]; then
             tag=""
-        elif [ "$3" == "NULL" ]; then
+        elif [[ "$3" == "NULL" ]]; then
             tag="/latest"
         else
-            #only release_id is supported
-            tag="/$3"
+            if [[ $GH_API == True ]]; then
+                #only release_id is supported
+                tag="/$3"
+            else
+                tag="/tag/2.0.9"
+            fi
         fi
     else
         tag="/latest"
     fi
 
-    local rawURL="https://api.github.com/repos/$1/$2/releases$tag"
-    local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')"
+    if [[ ! -z ${GITHUB_ACTIONS+x} || $GH_API == False ]]; then
+        local rawURL="https://github.com/$1/$2/releases$tag"
+        local URL="https://github.com$(local one=${"$(curl -L --silent "${rawURL}" | grep '/download/' | eval $HG )"#*href=\"} && local two=${one%\"\ rel*} && echo $two)"
+    else
+        local rawURL="https://api.github.com/repos/$1/$2/releases$tag"
+        local URL="$(curl --silent "${rawURL}" | grep 'browser_download_url' | eval $HG | tr -d '"' | tr -d ' ' | sed -e 's/browser_download_url://')"
+    fi
+
+    if [[ -z $URL || $URL == "https://github.com" ]]; then
+        networkErr $2
+    fi
+
     echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
     echo "${cyan}"
     cd ./$4
-    curl -# -L -O "${URL}" || networkErr
+    curl -# -L -O "${URL}" || networkErr $2
     cd - >/dev/null 2>&1
     echo "${reset}"
 }
@@ -82,7 +121,7 @@ function DBR() {
     local URL="$(curl --silent "${rawURL}" | json_pp | grep 'href' | head -n 1 | tr -d '"' | tr -d ' ' | sed -e 's/href://')"
     echo "${green}[${reset}${blue}${bold} Downloading $(echo ${URL##*\/}) ${reset}${green}]${reset}"
     echo "${cyan}"
-    curl -# -L -O "${URL}" || networkErr
+    curl -# -L -O "${URL}" || networkErr $2
     echo "${reset}"
 }
 
@@ -92,7 +131,7 @@ function DPB() {
     echo "${green}[${reset}${blue}${bold} Downloading $(echo ${3##*\/}) ${reset}${green}]${reset}"
     echo "${cyan}"
     cd ./$4
-    curl -# -L -O "${URL}" || networkErr
+    curl -# -L -O "${URL}" || networkErr ${3##*\/}
     cd - >/dev/null 2>&1
     echo "${reset}"
 }
@@ -241,6 +280,7 @@ function DL() {
 
     # HFSPlus.efi
     DPB STLVNUB CloverGrower Files/HFSPlus/x64/HFSPlus.efi "../Shared/UEFI"
+    DPB $ACDT VirtualSMC EfiDriver/VirtualSmc.efi "Drivers"
 }
 
 function Init() {
@@ -249,13 +289,14 @@ function Init() {
         exit 1
     fi
 
-    if [ -d $WSDir ]; then
+    if [[ -d $WSDir ]]; then
         rm -rf $WSDir
     fi
     mkdir $WSDir
     cd $WSDir
     mkdir OC_ASPKG
     mkdir CLOVER_LASPKG
+    mkdir Drivers
 }
 
 function main() {
