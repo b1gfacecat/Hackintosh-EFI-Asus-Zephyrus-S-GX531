@@ -274,7 +274,6 @@ function DL() {
     #DGR hieplpvip AsusSMC # (Not Ready)
     DGR alexandred VoodooI2C
     DGR zxystd IntelBluetoothFirmware
-    DGR zxystd IntelBluetoothFirmware
     DBR Rehabman os-x-null-ethernet
 
     # Clover
