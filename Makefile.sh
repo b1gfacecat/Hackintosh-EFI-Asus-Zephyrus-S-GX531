@@ -141,30 +141,30 @@ function DPB() {
 # Exclude Trash
 function CTrash() {
     # Files
-    rm -rf *.app
-    rm -rf *.aml
-    rm -rf *.dSYM
-    rm -rf *.dsl
-    rm -rf *.sh
-    rm -rf *.plist
-    rm -rf *.txt
-    rm -rf *.zip
-    rm -rf "AsusSMCDaemon"
+    rm -rf *.app >/dev/null 2>&1
+    rm -rf *.aml >/dev/null 2>&1
+    rm -rf *.dSYM >/dev/null 2>&1
+    rm -rf *.dsl >/dev/null 2>&1
+    rm -rf *.sh >/dev/null 2>&1
+    rm -rf *.plist >/dev/null 2>&1
+    rm -rf *.txt >/dev/null 2>&1
+    rm -rf *.zip >/dev/null 2>&1
+    rm -rf "AsusSMCDaemon" >/dev/null 2>&1
 
     # Folders
-    rm -rf "Docs"
-    rm -rf "dSYM"
-    rm -rf "Utilities"
-    rm -rf "Debug"
-    rm -rf "__MACOSX"
+    rm -rf "Docs" >/dev/null 2>&1
+    rm -rf "dSYM" >/dev/null 2>&1
+    rm -rf "Utilities" >/dev/null 2>&1
+    rm -rf "Debug" >/dev/null 2>&1
+    rm -rf "__MACOSX" >/dev/null 2>&1
 
     # Kexts
-    rm -rf VoodooI2CAtmelMXT.kext
-    rm -rf VoodooI2CELAN.kext
-    rm -rf VoodooI2CFTE.kext
-    rm -rf VoodooI2CSynaptics.kext
-    rm -rf VoodooI2CUPDDEngine.kext
-    rm -rf NullEthernetInjector.kext
+    rm -rf VoodooI2CAtmelMXT.kext >/dev/null 2>&1
+    rm -rf VoodooI2CELAN.kext >/dev/null 2>&1
+    rm -rf VoodooI2CFTE.kext >/dev/null 2>&1
+    rm -rf VoodooI2CSynaptics.kext >/dev/null 2>&1
+    rm -rf VoodooI2CUPDDEngine.kext >/dev/null 2>&1
+    rm -rf NullEthernetInjector.kext >/dev/null 2>&1
 }
 
 # Extract files for Clover
