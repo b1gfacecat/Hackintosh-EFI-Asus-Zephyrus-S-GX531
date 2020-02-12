@@ -70,7 +70,7 @@ function H_or_G() {
     elif [[ "$1" == "CloverBootloader" ]]; then
         HG="grep CloverISO"
     elif [[ "$1" == "IntelBluetoothFirmware" ]]; then
-        HG="grep $2"
+        HG="grep -m 1 IntelBluetooth"
     else
         HG="grep -m 1 RELEASE"
     fi
@@ -78,7 +78,7 @@ function H_or_G() {
 
 # Download GitHub Release
 function DGR() {
-    H_or_G $2 $5
+    H_or_G $2
 
     if [[ ! -z ${3+x} ]]; then
         if [[ "$3" == "PreRelease" ]]; then
@@ -273,8 +273,8 @@ function DL() {
     DGR al3xtjames NoTouchID
     #DGR hieplpvip AsusSMC # (Not Ready)
     DGR alexandred VoodooI2C
-    DGR zxystd IntelBluetoothFirmware NULL '.' Firmware.kext
-    DGR zxystd IntelBluetoothFirmware NULL '.' Injector.kext
+    DGR zxystd IntelBluetoothFirmware
+    DGR zxystd IntelBluetoothFirmware
     DBR Rehabman os-x-null-ethernet
 
     # Clover
